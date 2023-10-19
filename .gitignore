@@ -1,0 +1,11 @@
+/build
+/dist
+/layers
+/node_modules
+
+*.log
+*.txt
+
+.eslintrc.js
+.ini
+.prettierrc

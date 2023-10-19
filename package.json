@@ -1,0 +1,19 @@
+{
+  "name": "ARTSY",
+  "version": "0.0.1",
+  "description": "NFT ART GENERATOR",
+  "author": "PANASHE INNOCENT TAFUMA",
+  "scripts": {
+    "pictures": "tsc && node dist/index.js",
+    "format": "prettier --write \"**/*.ts\""
+  },
+  "devDependencies": {
+    "@types/node": "^20.8.6",
+    "prettier": "^3.0.3",
+    "typescript": "^5.2.2"
+  },
+  "dependencies": {
+    "canvas": "^2.11.2",
+    "crypto": "^1.0.1"
+  }
+}
