@@ -1,6 +1,7 @@
 import { IMAGE_CONFIG } from "../../config";
 import assertImageCreation from "../../util/assert-image-creation";
 import createImageContext from "../../util/create-image-context";
+import dirtyHash from "../../util/dirty-hash";
 import sha256 from "../../util/sha256";
 import { TLoadedImages, TImageSaveContext } from "./image.types";
 
@@ -41,11 +42,6 @@ export class Image {
   }
 
   private getHash(): string {
-    const dirtyHash = this.loadedImages
-      .map(({ fileProperties }) => fileProperties.name)
-      .join("_")
-      .trim();
-
-    return sha256(dirtyHash);
+    return sha256(dirtyHash(this.loadedImages));
   }
 }

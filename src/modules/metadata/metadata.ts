@@ -13,12 +13,12 @@ export class Metadata {
     this.data = this.getData();
   }
 
-  public readonly data: TMetadata;
   public readonly attributes: TAttributes;
+  public readonly data: TMetadata;
   public readonly filename: string;
+  public readonly loadedImages: TLoadedImages;
 
   private readonly CONFIG: TLayerConfig = LAYERS_CONFIG;
-  private readonly loadedImages: TLoadedImages;
 
   public getSaveContext(): TMetadataSaveContext {
     return {

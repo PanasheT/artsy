@@ -8,3 +8,5 @@ export * from "./assert-image-creation";
 export * from "./create-image-context";
 export * from "./assert-metadata-creation";
 export * from "./get-path";
+export * from "./assert-disk-utility-creation";
+export * from "./dirty-hash";
