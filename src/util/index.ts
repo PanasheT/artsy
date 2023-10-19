@@ -3,3 +3,4 @@ export * from "./mkdir";
 export * from "./rmdir";
 export * from "./logger";
 export * from "./assert-path-exists";
+export * from "./sha256";
