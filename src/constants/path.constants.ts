@@ -6,4 +6,6 @@ export abstract class PathConstants {
   public static readonly BUILD_IMAGES = PathConstants.BUILD.concat("/images");
 
   public static readonly BUILD_JSON = PathConstants.BUILD.concat("/json");
+
+  public static readonly LAYERS = PathConstants.BASE.concat("/layers");
 }
