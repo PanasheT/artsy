@@ -8,6 +8,6 @@ export default async function mkoutputdir(): Promise<void> {
     await rmdir(PathConstants.BUILD);
   }
 
-  await mkdir(PathConstants.BUILD_IMAGES);
-  await mkdir(PathConstants.BUILD_JSON);
+  await mkdir(PathConstants.IMAGES);
+  await mkdir(PathConstants.JSON);
 }

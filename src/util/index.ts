@@ -7,3 +7,4 @@ export * from "./sha256";
 export * from "./assert-image-creation";
 export * from "./create-image-context";
 export * from "./assert-metadata-creation";
+export * from "./get-path";
