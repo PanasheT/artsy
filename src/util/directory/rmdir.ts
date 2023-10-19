@@ -1,5 +1,5 @@
 import { existsSync, promises } from "fs";
-import logger from "./logger";
+import logger from "../logger";
 
 export default async function rmdir(path: string): Promise<void> {
   if (!existsSync(path)) {

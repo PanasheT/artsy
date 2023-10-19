@@ -1,5 +1,5 @@
 import { createCanvas } from "canvas";
-import { IMAGE_CONFIG } from "../config";
+import { IMAGE_CONFIG } from "../../config";
 
 export default function createImageContext() {
   const { width, height, background } = IMAGE_CONFIG;

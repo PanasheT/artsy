@@ -1,5 +1,5 @@
-import { PathConstants } from "../constants";
-import { TSystemPaths } from "../modules/path";
+import { PathConstants } from "../../constants";
+import { TSystemPaths } from "../../modules/path";
 
 export default function getPath(type: TSystemPaths, filename: string): string {
   if (filename.charAt(0) === "/") {

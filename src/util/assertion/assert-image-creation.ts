@@ -1,5 +1,5 @@
-import { LAYERS_CONFIG } from "../config";
-import { TLoadedImages } from "../modules/image";
+import { LAYERS_CONFIG } from "../../config";
+import { TLoadedImages } from "../../modules/image";
 
 export default function assertImageCreation(
   loadedImages: TLoadedImages,

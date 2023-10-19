@@ -1,5 +1,5 @@
 import { existsSync } from "fs";
-import { PathConstants } from "../constants";
+import { PathConstants } from "../../constants";
 import rmdir from "./rmdir";
 import mkdir from "./mkdir";
 

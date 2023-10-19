@@ -1,4 +1,4 @@
-import { TLoadedImages } from "../modules/image";
+import { TLoadedImages } from "../../modules/image";
 
 export default function dirtyHash(arg: TLoadedImages): string {
   if (!Array.isArray(arg) || !arg.length) {

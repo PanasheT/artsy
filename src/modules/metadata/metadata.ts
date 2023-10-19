@@ -1,5 +1,5 @@
 import { COLLECTION_CONFIG, LAYERS_CONFIG, TLayerConfig } from "../../config";
-import assertMetadataCreation from "../../util/assert-metadata-creation";
+import assertMetadataCreation from "../../util/assertion/assert-metadata-creation";
 import { Image, TLoadedImages } from "../image";
 import { TAttributes, TMetadata, TMetadataSaveContext } from "./metadata.types";
 

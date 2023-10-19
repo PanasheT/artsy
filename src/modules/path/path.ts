@@ -1,4 +1,4 @@
-import assertPathExists from "../../util/assert-path-exists";
+import assertPathExists from "../../util/assertion/assert-path-exists";
 import { promises } from "fs";
 import { TFileProperties } from "./path.types";
 

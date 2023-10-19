@@ -1,6 +1,6 @@
-import { Image } from "../modules/image";
-import { Metadata } from "../modules/metadata";
-import dirtyHash from "./dirty-hash";
+import { Image } from "./../../modules/image/image";
+import { Metadata } from "../../modules/metadata";
+import dirtyHash from "../hash/dirty-hash";
 
 export default function assertDiskUtilityCreation(
   image: Image,

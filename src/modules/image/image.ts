@@ -1,18 +1,27 @@
+import { SESSION } from "../../..";
 import { IMAGE_CONFIG } from "../../config";
-import assertImageCreation from "../../util/assert-image-creation";
-import createImageContext from "../../util/create-image-context";
-import dirtyHash from "../../util/dirty-hash";
-import sha256 from "../../util/sha256";
+import assertImageCreation from "../../util/assertion/assert-image-creation";
+import createImageContext from "../../util/generation/create-image-context";
+import dirtyHash from "../../util/hash/dirty-hash";
+import sha256 from "../../util/hash/sha256";
 import { TLoadedImages, TImageSaveContext } from "./image.types";
 
 export class Image {
   constructor(loadedImages: TLoadedImages, filename: string) {
     assertImageCreation(loadedImages, filename);
 
+    const hash = this.getHash(loadedImages);
+
+    if (SESSION.alreadyHashed(hash)) {
+      throw new Error(
+        `Image already made with DNA = ${hash}, skipping generation...`
+      );
+    }
+
     this.filename = filename;
     this.loadedImages = loadedImages;
     this.buffer = this.getBuffer();
-    this.hash = this.getHash();
+    this.hash = hash;
   }
 
   public readonly buffer: Buffer;
@@ -41,7 +50,7 @@ export class Image {
     return canvas.toBuffer("image/png");
   }
 
-  private getHash(): string {
-    return sha256(dirtyHash(this.loadedImages));
+  private getHash(loadedImages = this.loadedImages): string {
+    return sha256(dirtyHash(loadedImages));
   }
 }

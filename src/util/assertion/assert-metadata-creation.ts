@@ -1,4 +1,4 @@
-import { Image } from "../modules/image";
+import { Image } from "../../modules/image";
 
 export default function assertMetadataCreation(image: Image): void {
   if (!(image instanceof Image)) {
