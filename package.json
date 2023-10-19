@@ -3,6 +3,8 @@
   "version": "0.0.1",
   "description": "NFT ART GENERATOR",
   "author": "PANASHE INNOCENT TAFUMA",
+  "license": "UNLICENSED",
+  "private": "true",
   "scripts": {
     "pictures": "tsc && node dist/index.js",
     "format": "prettier --write \"**/*.ts\""
