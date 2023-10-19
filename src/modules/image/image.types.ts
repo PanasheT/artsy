@@ -8,7 +8,7 @@ export type TLoadedImage = Readonly<{
 
 export type TLoadedImages = Readonly<Array<TLoadedImage>>;
 
-export type TSaveImageContext = Readonly<{
+export type TImageSaveContext = Readonly<{
   data: Buffer;
   filename: string;
   hash: string;
