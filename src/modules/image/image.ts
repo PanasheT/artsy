@@ -1,10 +1,10 @@
-import { SESSION } from "../../..";
-import { IMAGE_CONFIG } from "../../config";
-import assertImageCreation from "../../util/assertion/assert-image-creation";
-import createImageContext from "../../util/generation/create-image-context";
-import dirtyHash from "../../util/hash/dirty-hash";
-import sha256 from "../../util/hash/sha256";
-import { TLoadedImages, TImageSaveContext } from "./image.types";
+import { SESSION } from '../../..';
+import { IMAGE_CONFIG } from '../../config';
+import assertImageCreation from '../../util/assertion/assert-image-creation';
+import createImageContext from '../../util/generation/create-image-context';
+import dirtyHash from '../../util/hash/dirty-hash';
+import sha256 from '../../util/hash/sha256';
+import { TLoadedImages, TImageSaveContext } from './image.types';
 
 export class Image {
   constructor(loadedImages: TLoadedImages, filename: string) {
@@ -47,7 +47,7 @@ export class Image {
       ctx.drawImage(image, 0, 0, width, height);
     });
 
-    return canvas.toBuffer("image/png");
+    return canvas.toBuffer('image/png');
   }
 
   private getHash(loadedImages = this.loadedImages): string {

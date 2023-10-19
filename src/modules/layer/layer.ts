@@ -1,7 +1,7 @@
-import { LAYERS_CONFIG, TLayerConfig } from "../../config";
-import { PathConstants } from "../../constants";
-import { Path } from "../path";
-import { TLayer } from "./layer.types";
+import { LAYERS_CONFIG, TLayerConfig } from '../../config';
+import { PathConstants } from '../../constants';
+import { Path } from '../path';
+import { TLayer } from './layer.types';
 
 export class Layer extends Path {
   constructor() {

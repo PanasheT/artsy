@@ -1,4 +1,4 @@
-import { TMetadata } from "../metadata";
+import { TMetadata } from '../metadata';
 
 export class Session {
   private constructor() {}

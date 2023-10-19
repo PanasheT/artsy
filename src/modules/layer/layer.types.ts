@@ -1,4 +1,4 @@
-import { TFileProperties } from "../path";
+import { TFileProperties } from '../path';
 
 export type TLayer = Readonly<{
   elements: Array<TFileProperties>;

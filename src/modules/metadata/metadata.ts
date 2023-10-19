@@ -1,7 +1,7 @@
-import { COLLECTION_CONFIG, LAYERS_CONFIG, TLayerConfig } from "../../config";
-import assertMetadataCreation from "../../util/assertion/assert-metadata-creation";
-import { Image, TLoadedImages } from "../image";
-import { TAttributes, TMetadata, TMetadataSaveContext } from "./metadata.types";
+import { COLLECTION_CONFIG, LAYERS_CONFIG, TLayerConfig } from '../../config';
+import assertMetadataCreation from '../../util/assertion/assert-metadata-creation';
+import { Image, TLoadedImages } from '../image';
+import { TAttributes, TMetadata, TMetadataSaveContext } from './metadata.types';
 
 export class Metadata {
   constructor(image: Image) {
@@ -38,8 +38,8 @@ export class Metadata {
   private getData(): TMetadata {
     return {
       attributes: this.attributes,
-      author: "Panashe Innocent Tafuma",
-      compiler: "Artsy",
+      author: 'Panashe Innocent Tafuma',
+      compiler: 'Artsy',
       description: COLLECTION_CONFIG.description,
       edition: parseInt(this.filename, 10),
       name: `${COLLECTION_CONFIG.name} #${this.filename}`,

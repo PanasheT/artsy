@@ -1,5 +1,5 @@
-import { Image } from "canvas";
-import { TFileProperties } from "../path";
+import { Image } from 'canvas';
+import { TFileProperties } from '../path';
 
 export type TLoadedImage = Readonly<{
   fileProperties: TFileProperties;

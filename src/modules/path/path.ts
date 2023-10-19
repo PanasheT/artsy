@@ -1,6 +1,6 @@
-import assertPathExists from "../../util/assertion/assert-path-exists";
-import { promises } from "fs";
-import { TFileProperties } from "./path.types";
+import assertPathExists from '../../util/assertion/assert-path-exists';
+import { promises } from 'fs';
+import { TFileProperties } from './path.types';
 
 export class Path {
   constructor(path: string) {
@@ -27,7 +27,7 @@ export class Path {
       return {
         id,
         filename,
-        name: filename.split(".")[0],
+        name: filename.split('.')[0],
         path: this.path.concat(`/${filename}`),
       };
     });

@@ -5,7 +5,7 @@ type TCollectionConfig = Readonly<{
 }>;
 
 export const COLLECTION_CONFIG: TCollectionConfig = {
-  name: "ProjectX",
-  author: "Panashe Innocent Tafuma",
-  description: "I have nothing cool to write...",
+  name: 'ProjectX',
+  author: 'Panashe Innocent Tafuma',
+  description: 'I have nothing cool to write...',
 } as const;

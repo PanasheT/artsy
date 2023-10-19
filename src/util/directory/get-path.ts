@@ -1,26 +1,26 @@
-import { PathConstants } from "../../constants";
-import { TSystemPaths } from "../../modules/path";
+import { PathConstants } from '../../constants';
+import { TSystemPaths } from '../../modules/path';
 
 export default function getPath(type: TSystemPaths, filename: string): string {
-  if (filename.charAt(0) === "/") {
+  if (filename.charAt(0) === '/') {
     filename = filename.slice(1);
   }
 
   let base: string;
   switch (type) {
-    case "Base":
+    case 'Base':
       base = PathConstants.BASE;
       break;
-    case "Build":
+    case 'Build':
       base = PathConstants.BUILD;
       break;
-    case "Images":
+    case 'Images':
       base = PathConstants.IMAGES;
       break;
-    case "JSON":
+    case 'JSON':
       base = PathConstants.JSON;
       break;
-    case "Layers":
+    case 'Layers':
       base = PathConstants.LAYERS;
       break;
   }
@@ -31,5 +31,5 @@ export default function getPath(type: TSystemPaths, filename: string): string {
     );
   }
 
-  return base.concat("/", filename);
+  return base.concat('/', filename);
 }

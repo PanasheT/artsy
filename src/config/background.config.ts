@@ -16,6 +16,6 @@ export const IMAGE_CONFIG: TImageConfig = {
   background: {
     generate: false,
     randomise: false,
-    default: "#FFFFFF",
+    default: '#FFFFFF',
   } as const,
 } as const;

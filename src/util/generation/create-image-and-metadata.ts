@@ -1,6 +1,6 @@
-import { DiskUtility } from "../../modules/disk-utility";
-import { TLoadedImages, Image } from "../../modules/image";
-import { Metadata } from "../../modules/metadata";
+import { DiskUtility } from '../../modules/disk-utility';
+import { TLoadedImages, Image } from '../../modules/image';
+import { Metadata } from '../../modules/metadata';
 
 export default function createImageAndMetdata(
   loadedImages: TLoadedImages,

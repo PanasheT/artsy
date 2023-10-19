@@ -1,7 +1,7 @@
-import { randomInt } from "crypto";
-import { loadImage } from "canvas";
-import { TLayer } from "../../modules/layer";
-import { TLoadedImage } from "../../modules/image";
+import { randomInt } from 'crypto';
+import { loadImage } from 'canvas';
+import { TLayer } from '../../modules/layer';
+import { TLoadedImage } from '../../modules/image';
 
 export default async function getImageLayerStack(
   setup: Array<TLayer>

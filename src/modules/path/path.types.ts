@@ -5,4 +5,4 @@ export type TFileProperties = Readonly<{
   path: string;
 }>;
 
-export type TSystemPaths = "Base" | "Build" | "Images" | "JSON" | "Layers";
+export type TSystemPaths = 'Base' | 'Build' | 'Images' | 'JSON' | 'Layers';

@@ -4,8 +4,8 @@ export type TAttributes = Array<Readonly<TAttribute>>;
 
 export type TMetadata = Readonly<{
   attributes: TAttributes;
-  author: "Panashe Innocent Tafuma";
-  compiler: "Artsy";
+  author: 'Panashe Innocent Tafuma';
+  compiler: 'Artsy';
   description: string;
   edition: number;
   name: string;

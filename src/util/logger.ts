@@ -1,12 +1,12 @@
 type TColors =
-  | "Black"
-  | "Red"
-  | "Green"
-  | "Yellow"
-  | "Blue"
-  | "Magenta"
-  | "Cyan"
-  | "White";
+  | 'Black'
+  | 'Red'
+  | 'Green'
+  | 'Yellow'
+  | 'Blue'
+  | 'Magenta'
+  | 'Cyan'
+  | 'White';
 
 type TASCIIColor = Readonly<Record<TColors, number>>;
 
@@ -21,6 +21,6 @@ const ASCIIColors: TASCIIColor = {
   White: 37,
 } as const;
 
-export default function logger(log: string, color: TColors = "White"): void {
+export default function logger(log: string, color: TColors = 'White'): void {
   console.log(`\x1b[${ASCIIColors[color]}m%s\x1b[0m`, `${log}`);
 }
