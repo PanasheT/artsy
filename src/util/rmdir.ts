@@ -1,4 +1,5 @@
 import { existsSync, promises } from "fs";
+import logger from "./logger";
 
 export default async function rmdir(path: string): Promise<void> {
   if (!existsSync(path)) {
@@ -6,5 +7,5 @@ export default async function rmdir(path: string): Promise<void> {
   }
 
   await promises.rm(path, { recursive: true });
-  console.log("Successfully removed directory %s", path);
+  logger(`Directory successfully removed: ${path}`);
 }
