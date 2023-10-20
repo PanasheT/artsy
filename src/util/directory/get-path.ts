@@ -27,7 +27,7 @@ export default function getPath(type: TSystemPaths, filename: string): string {
 
   if (!base) {
     throw new Error(
-      "To generate a path using the following bases: 'Base' | 'Build' | 'Images' | 'JSON' | 'Layers'"
+      "To generate a path use the following bases: 'Base' | 'Build' | 'Images' | 'JSON' | 'Layers'"
     );
   }
 
