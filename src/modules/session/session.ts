@@ -16,7 +16,7 @@ export class Session {
   private readonly hashedImages = new Set<string>();
   private readonly metadataList: Array<TMetadata> = [];
 
-  public getMetadata() {
+  public getMetadata(): Array<TMetadata> {
     return [...this.metadataList];
   }
 

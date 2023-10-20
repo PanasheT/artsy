@@ -4,9 +4,9 @@ import { Metadata } from '../../modules/metadata';
 
 export default function createImageAndMetdata(
   loadedImages: TLoadedImages,
-  passedIndex: number
+  filename: number | string
 ): void {
-  const image = new Image(loadedImages, `${passedIndex}`);
+  const image = new Image(loadedImages, `${filename}`);
   const metadata = new Metadata(image);
   const utility = new DiskUtility(image, metadata);
   utility.writeImageAndMetadata();
