@@ -1,4 +1,7 @@
-export type TAttribute = Readonly<Record<string, string>>;
+export type TAttribute = Readonly<{
+  trait: string;
+  value: string;
+}>;
 
 export type TAttributes = Array<Readonly<TAttribute>>;
 

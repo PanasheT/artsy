@@ -30,7 +30,8 @@ export class Metadata {
   private getAttributes(): TAttributes {
     return this.CONFIG.layersOrder.map(({ name }, index) => {
       return {
-        [name]: this.loadedImages[index].fileProperties.name,
+        trait: name,
+        value: this.loadedImages[index].fileProperties.name,
       };
     });
   }
