@@ -6,6 +6,7 @@ import logger from '../../util/logger';
 import { SESSION } from '../../..';
 import assertDiskUtilityCreation from '../../util/assertion/assert-disk-utility-creation';
 import generateCompiledImage from '../../util/generation/generate-compiled-image';
+import { IMAGE_CONFIG } from '../../config';
 
 export class DiskUtility {
   constructor(image: Image, metadata: Metadata) {
@@ -19,6 +20,15 @@ export class DiskUtility {
   private readonly metadata: Metadata;
 
   public static async writeCompiledImages(): Promise<void> {
+    const { width, height } = IMAGE_CONFIG;
+
+    if (width !== height) {
+      logger(
+        `\nTIP: For better compiled image generation use square ratios. Your height and width are set to ${height}, ${width} respectively.`,
+        'Yellow'
+      );
+    }
+
     const imageBuffer = await generateCompiledImage();
 
     if (!imageBuffer) {
