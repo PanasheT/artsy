@@ -5,6 +5,7 @@ import { Metadata } from '../metadata';
 import logger from '../../util/logger';
 import { SESSION } from '../../..';
 import assertDiskUtilityCreation from '../../util/assertion/assert-disk-utility-creation';
+import generateCompiledImage from '../../util/generation/generate-compiled-image';
 
 export class DiskUtility {
   constructor(image: Image, metadata: Metadata) {
@@ -16,6 +17,19 @@ export class DiskUtility {
 
   private readonly image: Image;
   private readonly metadata: Metadata;
+
+  public static async writeCompiledImages(): Promise<void> {
+    const imageBuffer = await generateCompiledImage();
+
+    if (!imageBuffer) {
+      throw new Error('Failed to generate buffer for compiled images');
+    }
+
+    const savePath = getPath('Images', `_images.png`);
+    writeFileSync(savePath, imageBuffer);
+
+    logger(`Compiled images successfully: ${savePath}`);
+  }
 
   public static writeCompiledMetadata(): void {
     const metadata = SESSION.getMetadata();
@@ -40,7 +54,7 @@ export class DiskUtility {
     const savePath = getPath('Images', `${filename}.png`);
     writeFileSync(savePath, data);
 
-    SESSION.addHashedImage(hash);
+    SESSION.addHashedImage(hash, savePath);
 
     logger(`Image successfully created: ${savePath}`, 'Green');
   }

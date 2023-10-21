@@ -11,7 +11,10 @@ export default async function main(): Promise<void> {
 
   const { passed, failed } = await generationLoop(setup);
 
-  DiskUtility.writeCompiledMetadata();
+  if (passed > 0) {
+    DiskUtility.writeCompiledMetadata();
+    await DiskUtility.writeCompiledImages();
+  }
 
   generationSummary(failed, passed);
 }

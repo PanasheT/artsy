@@ -14,9 +14,10 @@ export class Session {
   public static instance: Session;
 
   private readonly hashedImages = new Set<string>();
+  private readonly imagePathList: Array<string> = [];
   private readonly metadataList: Array<TMetadata> = [];
 
-  public getMetadata(): Array<TMetadata> {
+  public getMetadata() {
     return [...this.metadataList];
   }
 
@@ -24,8 +25,18 @@ export class Session {
     this.metadataList.push(arg);
   }
 
-  public addHashedImage(hash: string): void {
+  public getImagePathList(): Array<string> {
+    return [...this.imagePathList];
+  }
+
+  public addHashedImage(hash: string, savePath: string): void {
+    const oldLength = this.hashedImages.size;
     this.hashedImages.add(hash);
+    const newLength = this.hashedImages.size;
+
+    if (newLength - oldLength === 1) {
+      this.imagePathList.push(savePath);
+    }
   }
 
   public alreadyHashed(hash: string): boolean {
