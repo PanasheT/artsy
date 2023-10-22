@@ -3,6 +3,7 @@ type TCollectionConfig = Readonly<{
   author: string;
   description: string;
   rarityDelimiter: '#' | '%' | '^';
+  defaultRarity: number;
 }>;
 
 export const COLLECTION_CONFIG: TCollectionConfig = {
@@ -10,4 +11,5 @@ export const COLLECTION_CONFIG: TCollectionConfig = {
   author: 'Panashe Innocent Tafuma',
   description: 'I have nothing cool to write...',
   rarityDelimiter: '#',
+  defaultRarity: 10,
 } as const;

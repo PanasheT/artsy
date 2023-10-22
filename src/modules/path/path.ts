@@ -1,6 +1,7 @@
 import assertPathExists from '../../util/assertion/assert-path-exists';
 import { promises } from 'fs';
 import { TFileProperties } from './path.types';
+import getRarity from '../../util/generation/get-rarity';
 
 export class Path {
   constructor(path: string) {
@@ -29,6 +30,7 @@ export class Path {
         filename,
         name: filename.split('.')[0],
         path: this.path.concat(`/${filename}`),
+        rarity: getRarity(filename),
       };
     });
   }

@@ -1,7 +1,7 @@
 import { LAYERS_CONFIG, TLayerConfig } from '../../config';
 import { PathConstants } from '../../constants';
 import { Path } from '../path';
-import { TLayer } from './layer.types';
+import { TLayers } from './layer.types';
 
 export class Layer extends Path {
   constructor() {
@@ -10,7 +10,7 @@ export class Layer extends Path {
 
   private readonly CONFIG: TLayerConfig = LAYERS_CONFIG;
 
-  public async getSetup(): Promise<Array<TLayer>> {
+  public async getSetup(): Promise<TLayers> {
     const setup = this.CONFIG.layersOrder
       .map(({ name }) => name)
       .map(async (name, id) => {

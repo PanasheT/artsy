@@ -1,19 +1,19 @@
-import { randomInt } from 'crypto';
 import { loadImage } from 'canvas';
-import { TLayer } from '../../modules/layer';
+import { TLayer, TLayers } from '../../modules/layer';
 import { TLoadedImage } from '../../modules/image';
+import getImageElementBasedOnRarity from './get-image-element';
 
 export default async function getImageLayerStack(
-  setup: Array<TLayer>
+  layers: TLayers
 ): Promise<Array<TLoadedImage>> {
-  const loadedImages = setup.map(async (layer) => {
-    const file = layer.elements[randomInt(layer.elementCount)];
+  return await Promise.all(layers.map(loadImages));
+}
 
-    return {
-      fileProperties: file,
-      image: await loadImage(file.path),
-    };
-  });
+async function loadImages(layer: TLayer): Promise<TLoadedImage> {
+  const file = getImageElementBasedOnRarity(layer.elements);
 
-  return await Promise.all(loadedImages);
+  return {
+    fileProperties: file,
+    image: await loadImage(file.path),
+  };
 }
