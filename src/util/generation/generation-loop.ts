@@ -4,7 +4,9 @@ import logger from '../logger';
 import createImageAndMetdata from './create-image-and-metadata';
 import getImageLayerStack from './get-image-layer-stack';
 
-export default async function generationLoop(setup: Array<TLayer>) {
+export default async function generationLoop(
+  setup: Array<TLayer>
+): Promise<{ passed: number; failed: number }> {
   let [passed, failed] = [1, 0];
 
   while (passed <= config.collectionSize) {
@@ -13,7 +15,7 @@ export default async function generationLoop(setup: Array<TLayer>) {
     try {
       createImageAndMetdata(loadedImages, passed);
     } catch (err: any) {
-      logger(err, 'Yellow');
+      logger(err, 'Red');
       failed++;
       continue;
     }

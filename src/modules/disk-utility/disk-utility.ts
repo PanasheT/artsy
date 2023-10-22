@@ -5,8 +5,8 @@ import { Metadata } from '../metadata';
 import logger from '../../util/logger';
 import { SESSION } from '../../..';
 import assertDiskUtilityCreation from '../../util/assertion/assert-disk-utility-creation';
-import generateCompiledImage from '../../util/generation/generate-compiled-image';
 import { IMAGE_CONFIG } from '../../config';
+import { CompiledImages } from '../compiled-images';
 
 export class DiskUtility {
   constructor(image: Image, metadata: Metadata) {
@@ -29,7 +29,9 @@ export class DiskUtility {
       );
     }
 
-    const imageBuffer = await generateCompiledImage();
+    const image = new CompiledImages();
+
+    const imageBuffer = await image.generate();
 
     if (!imageBuffer) {
       throw new Error('Failed to generate buffer for compiled images');

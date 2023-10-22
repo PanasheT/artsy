@@ -1,10 +1,10 @@
-type TLayer = {
+type TLayerDirectory = {
   name: string;
 };
 
 export type TLayerConfig = Readonly<{
   collectionSize: number;
-  layersOrder: Readonly<Array<TLayer>>;
+  layersOrder: Readonly<Array<TLayerDirectory>>;
 }>;
 
 export const LAYERS_CONFIG: TLayerConfig = {
