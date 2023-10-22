@@ -5,6 +5,6 @@ export * from './generation-loop';
 export * from './create-image-context';
 export * from './get-images-from-path-list';
 export * from './get-rows';
-export * from './get-rarity';
+export * from './get-rarity-from-filename';
 export * from './get-image-element';
 export * from './get-random-file-by-rarity';

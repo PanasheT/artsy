@@ -8,11 +8,9 @@ export default async function getImagesFromPathList(
     throw new Error('Paths must be a valid array');
   }
 
-  if (!paths.length) {
-    return [];
-  }
-
+  if (!paths.length) return [];
+  
   paths.forEach((path) => assertPathExists(path));
 
-  return await Promise.all(paths.map(async (path) => loadImage(path)));
+  return await Promise.all(paths.map(loadImage));
 }
