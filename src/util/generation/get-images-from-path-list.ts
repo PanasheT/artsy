@@ -9,7 +9,7 @@ export default async function getImagesFromPathList(
   }
 
   if (!paths.length) return [];
-  
+
   paths.forEach((path) => assertPathExists(path));
 
   return await Promise.all(paths.map(loadImage));

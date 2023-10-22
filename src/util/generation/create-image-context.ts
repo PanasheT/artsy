@@ -23,7 +23,10 @@ export default function createImageContext() {
 
 export function createCompiledImageContext() {
   let { width, height } = IMAGE_CONFIG;
-  const [rows, columns] = [getRowsForCompiledImage(), getRowsForCompiledImage()];
+  const [rows, columns] = [
+    getRowsForCompiledImage(),
+    getRowsForCompiledImage(),
+  ];
 
   const extraRow = Math.ceil(
     (LAYERS_CONFIG.collectionSize - rows * columns) / rows

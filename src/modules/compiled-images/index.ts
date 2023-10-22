@@ -1,1 +1,1 @@
-export * from './compiled-images'
+export * from './compiled-images';
