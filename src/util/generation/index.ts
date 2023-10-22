@@ -8,3 +8,4 @@ export * from './get-rows';
 export * from './get-rarity-from-filename';
 export * from './get-image-element';
 export * from './get-random-file-by-rarity';
+export * from './get-highest-rarity';
