@@ -7,7 +7,7 @@ export default function getRarity(filename: string): number {
 
 function extractRarity(filename: string): string {
   return filename.slice(
-    filename.lastIndexOf(COLLECTION_CONFIG.rarityDelimiter),
+    filename.lastIndexOf(COLLECTION_CONFIG.rarityDelimiter) + 1,
     filename.lastIndexOf('.')
   );
 }

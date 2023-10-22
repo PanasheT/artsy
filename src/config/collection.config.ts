@@ -11,5 +11,5 @@ export const COLLECTION_CONFIG: TCollectionConfig = {
   author: 'Panashe Innocent Tafuma',
   description: 'I have nothing cool to write...',
   rarityDelimiter: '#',
-  defaultRarity: 10,
+  defaultRarity: 1,
 } as const;

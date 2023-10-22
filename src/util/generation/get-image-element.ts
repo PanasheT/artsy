@@ -9,19 +9,11 @@ export default function getImageElementBasedOnRarity(
     return layerElements[0];
   }
 
-  const tRarity = getTotalRarity(layerElements);
   let selected: TFileProperties | undefined;
 
   do {
-    selected = getRandomFileByRarity(layerElements, tRarity);
+    selected = getRandomFileByRarity(layerElements);
   } while (!selected === true);
 
   return selected!;
-}
-
-function getTotalRarity(layerElements: TLayerElements): number {
-  return layerElements.reduce(
-    (initial, element) => initial + element.rarity,
-    0
-  );
 }

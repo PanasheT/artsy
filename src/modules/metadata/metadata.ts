@@ -31,7 +31,7 @@ export class Metadata {
     return this.CONFIG.layersOrder.map(({ name }, index) => {
       return {
         trait: name,
-        value: this.loadedImages[index].fileProperties.name,
+        value: this.getTraitValue(this.loadedImages[index].fileProperties.name),
       };
     });
   }
@@ -45,5 +45,13 @@ export class Metadata {
       edition: parseInt(this.filename, 10),
       name: `${COLLECTION_CONFIG.name} #${this.filename}`,
     };
+  }
+
+  private getTraitValue(value: string): string {
+    if (value.lastIndexOf(COLLECTION_CONFIG.rarityDelimiter) == -1) {
+      return value;
+    }
+
+    return value.slice(0, value.lastIndexOf(COLLECTION_CONFIG.rarityDelimiter));
   }
 }
