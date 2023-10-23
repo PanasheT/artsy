@@ -31,6 +31,7 @@ export class Metadata {
       attributes: this._attributes,
       author: 'Panashe Innocent Tafuma',
       compiler: 'Artsy',
+      date: Date.now(),
       description: COLLECTION_CONFIG.description,
       dna: this.dna,
       edition: parseInt(this.filename, 10),

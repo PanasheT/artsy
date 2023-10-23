@@ -9,6 +9,7 @@ export type TMetadata = Readonly<{
   attributes: TAttributes;
   author: 'Panashe Innocent Tafuma';
   compiler: 'Artsy';
+  date: number; //Unix milliseconds
   description: string;
   dna: string;
   edition: number;
