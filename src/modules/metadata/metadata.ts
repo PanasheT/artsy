@@ -1,10 +1,10 @@
-import { COLLECTION_CONFIG, LAYERS_CONFIG, TLayerConfig } from '../../config';
+import { COLLECTION_CONFIG, LAYERS_CONFIG } from '../../config';
 import assertMetadataCreation from '../../util/assertion/assert-metadata-creation';
 import { Image, TLoadedImages } from '../image';
 import { TAttributes, TMetadata, TMetadataSaveContext } from './metadata.types';
 
 export class Metadata {
-  constructor(image: Image) {
+  constructor(image: Image, private readonly CONFIG = LAYERS_CONFIG) {
     assertMetadataCreation(image);
 
     this.filename = image.filename;
@@ -17,8 +17,6 @@ export class Metadata {
   public readonly data: TMetadata;
   public readonly filename: string;
   public readonly loadedImages: TLoadedImages;
-
-  private readonly CONFIG: TLayerConfig = LAYERS_CONFIG;
 
   public getSaveContext(): TMetadataSaveContext {
     return {

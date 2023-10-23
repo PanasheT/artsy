@@ -9,15 +9,15 @@ import { IMAGE_CONFIG } from '../../config';
 import { CompiledImages } from '../compiled-images';
 
 export class DiskUtility {
-  constructor(image: Image, metadata: Metadata) {
+  constructor(
+    private readonly image: Image,
+    private readonly metadata: Metadata
+  ) {
     assertDiskUtilityCreation(image, metadata);
 
     this.image = image;
     this.metadata = metadata;
   }
-
-  private readonly image: Image;
-  private readonly metadata: Metadata;
 
   public static async writeCompiledImages(): Promise<void> {
     const { width, height } = IMAGE_CONFIG;
