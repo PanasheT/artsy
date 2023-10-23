@@ -9,3 +9,4 @@ export * from './get-rarity-from-filename';
 export * from './get-image-element';
 export * from './get-random-file-by-rarity';
 export * from './get-highest-rarity';
+export * from './get-random-hsl';
