@@ -4,13 +4,16 @@ import { Image, TLoadedImages } from '../image';
 import { TAttributes, TMetadata, TMetadataSaveContext } from './metadata.types';
 
 export class Metadata {
-  constructor(image: Image, private readonly CONFIG = LAYERS_CONFIG) {
+  constructor(
+    image: Image,
+    private readonly CONFIG = LAYERS_CONFIG
+  ) {
     assertMetadataCreation(image);
 
     this.filename = image.filename;
     this.loadedImages = image.loadedImages;
-    this.attributes = this.getAttributes();
-    this.data = this.getData();
+    this.attributes = this._attributes;
+    this.data = this._metadata;
   }
 
   public readonly attributes: TAttributes;
@@ -25,16 +28,7 @@ export class Metadata {
     };
   }
 
-  private getAttributes(): TAttributes {
-    return this.CONFIG.layersOrder.map(({ name }, index) => {
-      return {
-        trait: name,
-        value: this.getTraitValue(this.loadedImages[index].fileProperties.name),
-      };
-    });
-  }
-
-  private getData(): TMetadata {
+  private get _metadata(): TMetadata {
     return {
       attributes: this.attributes,
       author: 'Panashe Innocent Tafuma',
@@ -45,11 +39,16 @@ export class Metadata {
     };
   }
 
-  private getTraitValue(value: string): string {
-    if (value.lastIndexOf(COLLECTION_CONFIG.rarityDelimiter) == -1) {
-      return value;
-    }
+  private get _attributes(): TAttributes {
+    return this.CONFIG.layersOrder.map(({ name }, index) => ({
+      trait: name,
+      value: this.getTraitValue(this.loadedImages[index].fileProperties.name),
+    }));
+  }
 
-    return value.slice(0, value.lastIndexOf(COLLECTION_CONFIG.rarityDelimiter));
+  private getTraitValue(value: string): string {
+    return value.lastIndexOf(COLLECTION_CONFIG.rarityDelimiter) == -1
+      ? value
+      : value.slice(0, value.lastIndexOf(COLLECTION_CONFIG.rarityDelimiter));
   }
 }

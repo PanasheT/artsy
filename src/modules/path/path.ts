@@ -24,14 +24,12 @@ export class Path {
   public async getAllFileProperties(): Promise<Array<TFileProperties>> {
     const filenames = await this.getAllFilenames();
 
-    return filenames.map((filename, id) => {
-      return {
-        id,
-        filename,
-        name: filename.split('.')[0],
-        path: this.path.concat(`/${filename}`),
-        rarity: getRarityFromFilename(filename),
-      };
-    });
+    return filenames.map((filename, id) => ({
+      id,
+      filename,
+      name: filename.slice(0, filename.lastIndexOf('.')),
+      path: this.path.concat(`/${filename}`),
+      rarity: getRarityFromFilename(filename),
+    }));
   }
 }

@@ -1,3 +1,4 @@
+import { Canvas, CanvasRenderingContext2D, Image as CanvasImage } from 'canvas';
 import { SESSION } from '../../..';
 import { IMAGE_CONFIG } from '../../config';
 import assertImageCreation from '../../util/assertion/assert-image-creation';
@@ -18,11 +19,18 @@ export class Image {
       );
     }
 
+    const context = createImageContext();
+
+    this.canvas = context.canvas;
+    this.ctx = context.ctx;
     this.filename = filename;
     this.loadedImages = loadedImages;
     this.buffer = this.getBuffer();
     this.hash = hash;
   }
+
+  private readonly canvas: Canvas;
+  private readonly ctx: CanvasRenderingContext2D;
 
   public readonly buffer: Buffer;
   public readonly filename: string;
@@ -38,16 +46,14 @@ export class Image {
   }
 
   private getBuffer(): Buffer {
-    const [{ canvas, ctx }, { width, height }] = [
-      createImageContext(),
-      IMAGE_CONFIG,
-    ];
+    this.loadedImages.forEach(({ image }) => this.drawImage(image));
 
-    this.loadedImages.forEach(({ image }) => {
-      ctx.drawImage(image, 0, 0, width, height);
-    });
+    return this.canvas.toBuffer('image/png');
+  }
 
-    return canvas.toBuffer('image/png');
+  private drawImage(image: CanvasImage): void {
+    const { width, height } = IMAGE_CONFIG;
+    this.ctx.drawImage(image, 0, 0, width, height);
   }
 
   private getHash(loadedImages = this.loadedImages): string {
