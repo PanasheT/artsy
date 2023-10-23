@@ -7,13 +7,13 @@ import getImageLayerStack from './get-image-layer-stack';
 export default async function generationLoop(
   setup: Array<TLayer>
 ): Promise<{ passed: number; failed: number }> {
-  let [passed, failed] = [1, 0];
+  let [passed, failed] = [0, 0];
 
-  while (passed <= config.collectionSize) {
+  while (passed < config.collectionSize) {
     const loadedImages = await getImageLayerStack(setup);
 
     try {
-      createImageAndMetdata(loadedImages, passed);
+      createImageAndMetdata(loadedImages, passed + 1);
     } catch (err: any) {
       logger(err, 'Red');
       failed++;

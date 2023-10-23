@@ -23,16 +23,13 @@ export default function createImageContext() {
 
 export function createCompiledImageContext() {
   let { width, height } = IMAGE_CONFIG;
-  const [rows, columns] = [
-    getRowsForCompiledImage(),
-    getRowsForCompiledImage(),
-  ];
+  const imagesPerRow = getRowsForCompiledImage();
 
-  const extraRow = Math.ceil(
-    (LAYERS_CONFIG.collectionSize - rows * columns) / rows
+  const extraRows = Math.ceil(
+    (LAYERS_CONFIG.collectionSize - imagesPerRow ** 2) / imagesPerRow
   );
 
-  [width, height] = [rows * width, (columns + extraRow) * height];
+  [width, height] = [imagesPerRow * width, (imagesPerRow + extraRows) * height];
 
   const canvas = createCanvas(width, height);
   const ctx = canvas.getContext('2d');

@@ -1,7 +1,7 @@
 import { TLoadedImages } from '../../modules/image';
 
 export default function dirtyHash(arg: TLoadedImages): string {
-  if (!Array.isArray(arg) || !arg.length) {
+  if (!arg?.length) {
     throw new Error('Failed to create dirty hash for invalid loaded images');
   }
 

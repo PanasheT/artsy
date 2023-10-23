@@ -8,11 +8,11 @@ export function getRandomFileByRarity(
   arr: TLayerElements
 ): TFileProperties | undefined {
   const shuffled = shuffleArray([...arr]);
-  const rarityUpperLimit = getHighestRarity([...arr]) + 1;
+  const rarityUpperLimit = getHighestRarity([...arr]);
 
   const [rElement, rNum] = [
     shuffled[randomInt(shuffled.length)],
-    randomInt(rarityUpperLimit),
+    randomInt(rarityUpperLimit + 1),
   ];
 
   return rNum >= rElement.rarity ? rElement : undefined;
