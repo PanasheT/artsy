@@ -12,34 +12,33 @@ export class Metadata {
 
     this.filename = image.filename;
     this.loadedImages = image.loadedImages;
-    this.attributes = this._attributes;
-    this.data = this._metadata;
+    this.dna = image.hash;
   }
 
-  public readonly attributes: TAttributes;
-  public readonly data: TMetadata;
+  private readonly dna: string;
   public readonly filename: string;
   public readonly loadedImages: TLoadedImages;
 
   public getSaveContext(): TMetadataSaveContext {
     return {
-      data: this.data,
+      data: this._metadata,
       filename: this.filename,
     };
   }
 
-  private get _metadata(): TMetadata {
+  public get _metadata(): TMetadata {
     return {
-      attributes: this.attributes,
+      attributes: this._attributes,
       author: 'Panashe Innocent Tafuma',
       compiler: 'Artsy',
       description: COLLECTION_CONFIG.description,
+      dna: this.dna,
       edition: parseInt(this.filename, 10),
       name: `${COLLECTION_CONFIG.name} #${this.filename}`,
     };
   }
 
-  private get _attributes(): TAttributes {
+  public get _attributes(): TAttributes {
     return this.CONFIG.layersOrder.map(({ name }, index) => ({
       trait: name,
       value: this.getTraitValue(this.loadedImages[index].fileProperties.name),

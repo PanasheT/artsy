@@ -10,6 +10,7 @@ export type TMetadata = Readonly<{
   author: 'Panashe Innocent Tafuma';
   compiler: 'Artsy';
   description: string;
+  dna: string;
   edition: number;
   name: string;
 }>;
