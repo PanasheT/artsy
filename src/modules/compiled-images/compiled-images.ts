@@ -1,7 +1,7 @@
-import { Image } from 'canvas';
+import { Canvas, Image, CanvasRenderingContext2D } from 'canvas';
 import { SESSION } from '../../..';
 import getImagesFromPathList from '../../util/generation/get-images-from-path-list';
-import { IMAGE_CONFIG, LAYERS_CONFIG } from '../../config';
+import { IMAGE_CONFIG } from '../../config';
 import { createCompiledImageContext } from '../../util/generation';
 import getRowsForCompiledImage from '../../util/generation/get-rows';
 
@@ -9,66 +9,55 @@ export class CompiledImages {
   constructor() {
     const IMAGES = SESSION.getImagePathList();
 
-    if (!IMAGES) {
-      throw new Error("'No individual images to compile'");
+    if (!IMAGES?.length) {
+      throw new Error('No images to compile');
     }
 
-    this.imagePathList = IMAGES;
+    const { canvas, ctx } = createCompiledImageContext();
+
+    this.imagePaths = IMAGES;
+    this.canvas = canvas;
+    this.ctx = ctx;
   }
 
-  private readonly imagePathList: Array<string>;
+  private readonly canvas: Canvas;
+  private readonly ctx: CanvasRenderingContext2D;
+  private readonly imagePaths: Array<string>;
   private images: Array<Image> = [];
 
   public async generate(): Promise<Buffer> {
     await this.setImages();
 
     if (!this.images.length) {
-      throw new Error('No individual images to compile');
+      throw new Error('No images to compile');
     }
 
-    const { rows, columns, extraRows } = this.getDimensions();
-
-    return this.getBuffer(rows + extraRows, columns);
+    return this.getBuffer();
   }
 
-  private getDimensions() {
+  private getBuffer(): Buffer {
+    this.images.forEach((image, index) => {
+      const { row, column } = this.getRowAndColumn(index);
+      this.drawImage(image, row, column);
+    });
+
+    return this.canvas.toBuffer('image/png');
+  }
+
+  private getRowAndColumn(index: number) {
     const rows = getRowsForCompiledImage();
-    const columns = getRowsForCompiledImage();
-
-    const extraRows = Math.ceil(
-      (LAYERS_CONFIG.collectionSize - rows * columns) / rows
-    );
-
     return {
-      rows,
-      columns,
-      extraRows,
+      row: Math.floor(index / rows),
+      column: index % rows,
     };
   }
 
-  private getBuffer(rows: number, columns: number): Buffer {
-    const [{ canvas, ctx }, { width, height }] = [
-      createCompiledImageContext(),
-      IMAGE_CONFIG,
-    ];
-
-    let imageIndex = 0;
-    let image: Image | undefined = this.images[imageIndex];
-
-    for (let row = 0; row <= rows; row++) {
-      if (!image) break;
-      for (let column = 0; column < columns; column++) {
-        image = this.images[imageIndex];
-        if (!image) break;
-        ctx.drawImage(image, column * width, row * height, width, height);
-        imageIndex++;
-      }
-    }
-
-    return canvas.toBuffer('image/png');
+  private drawImage(image: Image, row: number, column: number): void {
+    const { width, height } = IMAGE_CONFIG;
+    this.ctx.drawImage(image, column * width, row * height, width, height);
   }
 
   private async setImages(): Promise<void> {
-    this.images = await getImagesFromPathList(this.imagePathList);
+    this.images = await getImagesFromPathList(this.imagePaths);
   }
 }
