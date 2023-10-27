@@ -2,6 +2,7 @@ import assertPathExists from '../../util/assertion/assert-path-exists';
 import { promises } from 'fs';
 import { TFileProperties } from './path.types';
 import getRarityFromFilename from '../../util/generation/get-rarity-from-filename';
+import path from 'path';
 
 export class Path {
   constructor(path: string) {
@@ -24,12 +25,16 @@ export class Path {
   public async getAllFileProperties(): Promise<Array<TFileProperties>> {
     const filenames = await this.getAllFilenames();
 
-    return filenames.map((filename, id) => ({
+    return filenames.map((filename, id) => this.mapper(filename, id));
+  }
+
+  private mapper(filename: string, id: number | string): TFileProperties {
+    return {
       id,
       filename,
       name: filename.slice(0, filename.lastIndexOf('.')),
-      path: this.path.concat(`/${filename}`),
+      path: path.join(this.path, filename),
       rarity: getRarityFromFilename(filename),
-    }));
+    };
   }
 }
