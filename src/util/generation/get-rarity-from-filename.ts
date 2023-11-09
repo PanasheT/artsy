@@ -6,8 +6,12 @@ export default function getRarityFromFilename(filename: string): number {
 }
 
 function extractRarity(filename: string): string {
-  return filename.slice(
-    filename.lastIndexOf(COLLECTION_CONFIG.rarityDelimiter) + 1,
-    filename.lastIndexOf('.')
-  );
+  if (filename.includes(COLLECTION_CONFIG.rarityDelimiter)) {
+    return filename.slice(
+      filename.lastIndexOf(COLLECTION_CONFIG.rarityDelimiter) + 1,
+      filename.lastIndexOf('.')
+    );
+  }
+
+  return '';
 }

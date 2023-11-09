@@ -1,13 +1,14 @@
 {
-  "name": "ARTSY",
+  "name": "artsy",
   "version": "0.0.1",
-  "description": "NFT ART GENERATOR",
+  "description": "NFT art generator",
   "author": "PANASHE INNOCENT TAFUMA",
-  "license": "UNLICENSED",
+  "license": "NONE",
   "private": "true",
   "scripts": {
+    "build": "tsc",
     "pictures": "tsc && node dist/index.js",
-    "rarity": "tsc && node dist/rarity-analysis.js",  
+    "chance": "tsc && node dist/chance-analysis.js",
     "format": "prettier --write \"**/*.ts\""
   },
   "devDependencies": {
