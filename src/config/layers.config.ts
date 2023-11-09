@@ -8,7 +8,7 @@ export type TLayerConfig = Readonly<{
 }>;
 
 export const LAYERS_CONFIG: TLayerConfig = {
-  collectionSize: 100,
+  collectionSize: 1000,
   layersOrder: [
     { name: 'SKIN' },
     { name: 'NOSE' },
