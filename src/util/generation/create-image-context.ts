@@ -11,6 +11,9 @@ export default function createImageContext() {
 
   ctx = addBackgroundToCTX(ctx);
   ctx.fillRect(0, 0, width, height);
+  
+  ctx.quality = 'best';
+  ctx.patternQuality = 'best';
 
   return {
     canvas,
@@ -22,11 +25,7 @@ function addBackgroundToCTX(ctx: CanvasRenderingContext2D) {
   const { background } = IMAGE_CONFIG;
 
   if (background.generate) {
-    if (background.randomise) {
-      ctx.fillStyle = getRandomHSL();
-    } else {
-      ctx.fillStyle = background.default;
-    }
+    ctx.fillStyle = background.randomise ? getRandomHSL() : background.default;
   }
 
   return ctx;
